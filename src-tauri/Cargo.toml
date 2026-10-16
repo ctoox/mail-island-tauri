@@ -1,0 +1,38 @@
+[package]
+name = "mail-island-tauri"
+version = "0.1.0"
+description = "Mail Island — Tauri 2 移植版（悬浮灵动岛邮件客户端）"
+authors = ["you"]
+edition = "2021"
+rust-version = "1.77"
+
+# Tauri 2 入口：main.rs 仅启动 lib.rs，逻辑都在 lib
+[lib]
+name = "mail_island_tauri_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-shell = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "time", "sync", "macros"] }
+
+# IMAP 接入（占位依赖，真接入时启用）
+# async-imap  = "0.9"
+# async-native-tls = "0.5"
+# mailparse    = "0.15"
+
+[features]
+# 此特性用于 prod 构建加速；常规 `cargo run --release` 不需要
+custom-protocol = ["tauri/custom-protocol"]
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

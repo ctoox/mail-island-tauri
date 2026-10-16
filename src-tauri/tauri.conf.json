@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Mail Island",
+  "version": "0.1.0",
+  "identifier": "cn.xtcer.mailisland.tauri",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "",
+    "beforeBuildCommand": ""
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "island",
+        "title": "Mail Island",
+        "width": 188,
+        "height": 44,
+        "minWidth": 120,
+        "minHeight": 4,
+        "resizable": false,
+        "maximizable": false,
+        "minimizable": false,
+        "fullscreen": false,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "visible": true,
+        "focus": false,
+        "center": false,
+        "shadow": false,
+        "backgroundColor": "#00000000",
+        "url": "index.html"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:;"
+    },
+    "trayIcon": {
+      "id": "main",
+      "iconPath": "icons/tray.png",
+      "iconAsTemplate": false,
+      "menuOnLeftClick": false,
+      "tooltip": "Mail Island (Tauri)"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "msi"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/icon.ico"
+    ],
+    "category": "Productivity",
+    "shortDescription": "悬浮灵动岛邮件客户端",
+    "longDescription": "多账户 IMAP、验证码智能提取、全局搜索；胶囊 ⇄ 展开 ⇄ 贴边三态。"
+  }
+}

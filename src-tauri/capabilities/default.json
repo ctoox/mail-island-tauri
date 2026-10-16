@@ -1,0 +1,17 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Mail Island 默认能力：自定义窗口事件 + 系统通知 + shell 打开",
+  "windows": ["island"],
+  "permissions": [
+    "core:default",
+    "core:window:default",
+    "core:window:allow-set-position",
+    "core:window:allow-set-size",
+    "core:window:allow-set-focus",
+    "core:webview:default",
+    "core:event:default",
+    "core:app:default",
+    "shell:allow-open"
+  ]
+}

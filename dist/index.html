@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:;" />
+  <title>Mail Island · Tauri</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="state-capsule">
+
+  <div id="island" data-mode="capsule">
+    <div class="compact">
+      <span class="dot"></span>
+      <span class="label">Mail Island</span>
+      <span class="badge" id="island-badge">0</span>
+      <span class="hint" id="island-hint">点击展开</span>
+    </div>
+
+    <div class="expanded">
+      <aside class="pane-nav">
+        <button class="nav-item active" data-view="all">📬 全部 <span class="count" id="c-all">0</span></button>
+        <button class="nav-item" data-view="unread">🔵 未读 <span class="count" id="c-unread"></span></button>
+        <button class="nav-item" data-view="codes">🔑 验证码 <span class="count" id="c-codes"></span></button>
+        <div class="nav-sec">账户</div>
+        <div class="nav-account">
+          <span class="avatar" id="nav-avatar">?</span>
+          <span class="email" id="nav-email">未配置</span>
+        </div>
+        <div style="flex:1"></div>
+        <button class="btn-ghost" id="btn-collapse">收起岛</button>
+      </aside>
+
+      <section class="pane-list">
+        <header class="toolbar">
+          <div class="search">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="search" placeholder="搜索邮件…" />
+          </div>
+          <span class="meta" id="sync-time">尚未连接</span>
+        </header>
+        <div class="mail-list" id="mail-list"></div>
+      </section>
+
+      <section class="pane-read">
+        <div class="read-empty" id="read-empty">选择一封邮件</div>
+        <article id="read-view" hidden>
+          <header class="read-head">
+            <h2 id="r-subject"></h2>
+            <div class="read-meta">
+              <span class="avatar" id="r-avatar">?</span>
+              <span><b id="r-from"></b> <span class="addr" id="r-addr"></span></span>
+              <span class="time" id="r-time"></span>
+            </div>
+          </header>
+          <div class="read-body" id="r-body"></div>
+          <footer class="read-actions">
+            <button class="btn-ghost" id="btn-reply">↩ 回复</button>
+            <button class="btn-ghost" id="btn-archive">📦 归档</button>
+            <button class="btn-ghost" id="btn-delete">🗑 删除</button>
+            <span style="flex:1"></span>
+            <button class="btn-accent" id="btn-copy" hidden>复制验证码</button>
+          </footer>
+        </article>
+      </section>
+    </div>
+  </div>
+
+  <div id="toast" role="status">
+    <div class="t-title" id="t-title"></div>
+    <div class="t-code"   id="t-code" hidden></div>
+    <div class="t-meta"   id="t-meta"></div>
+    <span class="t-copy"  id="t-copy" hidden>点击复制</span>
+  </div>
+
+  <div id="demo-bar">
+    <span class="tag">TAURI · DEMO</span>
+    <button class="btn-ghost" id="demo-mail">模拟新邮件</button>
+    <button class="btn-ghost" id="demo-code">模拟验证码</button>
+    <button class="btn-ghost" id="demo-mode" title="切换胶囊/展开/贴边">切换模式</button>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
